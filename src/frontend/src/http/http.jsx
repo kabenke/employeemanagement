@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/api", 
+  baseURL: "http://localhost:8080/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -9,15 +9,22 @@ const api = axios.create({
 
 export const request = async (url, method = "GET", data = null, config = {}) => {
   try {
+    const token = localStorage.getItem("token");
+
     const response = await api({
       url,
       method,
       data,
-      ...config, 
+      headers: {
+        ...(config.headers || {}),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      ...config,
     });
-    return response.data; 
+
+    return response.data;
   } catch (error) {
     console.error("API error:", error);
-    throw error; 
+    throw error;
   }
 };

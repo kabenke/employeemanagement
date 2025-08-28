@@ -35,15 +35,11 @@ const ListeEmployeeComponent = () => {
   return (
     <div className="container">
       <h2 className="text-center mt-4">Employee List</h2>
-  
-        <div class="d-flex justify-content-start">
+        <div className="d-flex justify-content-start">
         <button className="btn btn-primary mb-2" onClick={addNewEmployee}>
           New Employee
         </button>
       </div>
-
-     
-
       <table className="table table-striped mt-4">
         <thead>
           <tr>

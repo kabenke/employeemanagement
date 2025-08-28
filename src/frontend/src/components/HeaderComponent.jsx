@@ -1,11 +1,23 @@
-import React from 'react'
+import { useNavigate } from "react-router-dom";
+import { isAuthed, logout } from "../services/AuthService";
 
-export const HeaderComponent = () => {
+export default function HeaderComponent() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
-    <header>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-            <div><a href="http://localhost:3000/employees" className="navbar-brand">Employee Management App</a></div>
-        </nav>
+    <header className="bg-light py-3">
+      <div className="container d-flex justify-content-between align-items-center">
+        <h2 className="mb-0 text-center flex-grow-1">Employee App</h2>
+        {isAuthed() && (
+          <button className="btn btn-outline-danger ms-3" onClick={handleLogout}>
+            Logout
+          </button>
+        )}
+      </div>
     </header>
-  )
+  );
 }
