@@ -20,16 +20,14 @@ public class UserEntity {
   private String username; // or email
 
   @Column(nullable = false, length = 95)
-  private String password; // BCrypt hash
+  private String password; 
 
   @Column(nullable = false)
   private boolean enabled = true;
 
-  // Simple role storage as comma-separated values: "ROLE_ADMIN,ROLE_USER"
+
   @Column(nullable = false, length = 200)
   private String roles = "ROLE_USER";
-
-  // getters/setters …
 
   public Set<String> roleSet() {
     return Stream.of(roles.split(",")).map(String::trim).filter(s -> !s.isBlank())

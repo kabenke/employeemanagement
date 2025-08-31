@@ -9,6 +9,7 @@ import ListeEmployeeComponent from "./components/ListeEmployeeComponent";
 import EmployeeComponent from "./components/EmployeeComponent";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <main className="flex-grow-1 container-fluid">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          {/* Protected routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<ListeEmployeeComponent />} />
             <Route path="/employees" element={<ListeEmployeeComponent />} />
